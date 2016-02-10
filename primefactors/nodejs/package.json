@@ -1,8 +1,8 @@
 {
   "name": "primefactors",
   "version": "1.0.0",
-  "description": "Find the prime factors of integers through naive tdd",
-  "main": "index.js",
+  "description": "Find the prime factors of integers through naive tdd. Inspired by: http://www.codekatas.org/casts/prime-factors-code-kata-by-lets-developer",
+  "main": "primefactors.js",
   "scripts": {
     "test": "mocha"
   },

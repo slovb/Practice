@@ -1,11 +1,9 @@
 const assert = require('assert');
+const primefactors = require('./primefactors.js').primefactors;
 
-describe('Array', function() {
-  describe('#indexOf', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
+describe('primefactors', function() {
+  it('should return [] when given 1', function() {
+    assert.equal([], primefactors(1));
   });
 });
 
