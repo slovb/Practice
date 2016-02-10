@@ -1,4 +1,4 @@
-exports.funnyPlant = function(people, plants) {
+var simulation = function(people, plants) {
   var harvest = 0;
   var plantation = Array(plants).fill(0);
   for (var week = 1; harvest < people; week += 1) {
@@ -8,4 +8,16 @@ exports.funnyPlant = function(people, plants) {
   }
   return week;
 };
+
+var simplified = function(people, plants) {
+  var harvest = 0;
+  for (var week = 1; harvest < people; week += 1) {
+    harvest += plants; // The harvest increases with 1 per plant
+    plants += harvest; // The number of plants increase with 1 per fruit harvested
+  }
+  return week;
+};
+
+exports.funnyPlant = simulation;
+exports.funnyPlant = simplified;
 
