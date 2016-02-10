@@ -1,15 +1,10 @@
 exports.primefactors = function(i) {
-  var step = function(rest, candidate, factorization) {
-    factorization = factorization || [];
-    if (rest % candidate === 0) {
-      rest /= candidate;
-      factorization.push(candidate);
+  var factors = [];
+  for (var candidate = 2; i > 1; candidate += 1) {
+    for (; i % candidate === 0; i /= candidate) {
+      factors.push(candidate);
     }
-    else {
-      candidate += 1;
-    }
-    return rest <= 1 ? factorization : step(rest, candidate, factorization);
-  };
-  return step(i, 2);
+  }
+  return factors;
 }
 
