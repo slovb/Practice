@@ -18,6 +18,5 @@ var simplified = function(people, plants) {
   return week;
 };
 
-exports.funnyPlant = simulation;
 exports.funnyPlant = simplified;
 
