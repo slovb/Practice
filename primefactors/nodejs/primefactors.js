@@ -1,7 +1,7 @@
 exports.primefactors = function(i) {
   var factors = [];
   if (i > 1) {
-    if (i % 2 === 0) {
+    while (i % 2 === 0) {
       factors.push(2);
       i /= 2;
     }
