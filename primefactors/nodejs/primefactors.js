@@ -6,5 +6,5 @@ exports.primefactors = function(rest) {
     }
   }
   return factors;
-}
+};
 
