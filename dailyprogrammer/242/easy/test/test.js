@@ -2,6 +2,18 @@ const assert = require('assert');
 const funnyPlant = require('../funnyPlant.js').funnyPlant;
 
 describe('funnyPlant', function() {
+  it('1 1 => 2', function() {
+    assert.equal(2, funnyPlant(1, 1));
+  });
+  it('3 1 => 3', function() {
+    assert.equal(3, funnyPlant(3, 1));
+  });
+  it('8 1 => 4', function() {
+    assert.equal(4, funnyPlant(8, 1));
+  });
+  it('4 1 => 4', function() {
+    assert.equal(4, funnyPlant(4, 1));
+  });
   it('15 1 => 5', function() {
     assert.equal(5, funnyPlant(15, 1)); 
   });
