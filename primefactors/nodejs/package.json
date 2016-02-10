@@ -1,0 +1,11 @@
+{
+  "name": "primefactors",
+  "version": "1.0.0",
+  "description": "Find the prime factors of integers through naive tdd",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Rickard Nyman",
+  "license": "ISC"
+}
