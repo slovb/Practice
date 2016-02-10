@@ -1,12 +1,13 @@
 exports.primefactors = function(i) {
   var factors = [];
   if (i > 1) {
-    while (i % 2 === 0) {
-      factors.push(2);
-      i /= 2;
-    }
-    if (i > 1) {
-      factors.push(i);
+    var candidate = 2;
+    while (i > 1) {
+      while (i % candidate === 0) {
+        factors.push(candidate);
+        i /= candidate;
+      }
+      candidate += 1
     }
   }
   return factors;
