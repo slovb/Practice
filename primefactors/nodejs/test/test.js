@@ -15,5 +15,6 @@ describe('primefactors', function() {
   primetester(5, [5]);
   primetester(6, [2,3]);
   primetester(7, [7]);
+  primetester(8, [2,2,2]);
 });
 

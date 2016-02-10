@@ -8,7 +8,6 @@ exports.primefactors = function(i) {
     if (i > 1) {
       factors.push(i);
     }
-    return factors;
   }
   return factors;
 }
