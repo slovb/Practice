@@ -51,7 +51,7 @@ var solve = function(timetable) {
     path = path || [];
     var choices = decoded.programs.filter(filterGenerator(path));
     var best = path;
-    for (var i = 0; i < choices.length; ++i) {
+    for (var i = 0; i < choices.length; ++i) { // Try every viable choice
       var candidate = search(path.concat(choices[i])); 
       if (candidate.length > best.length) {
         best = candidate;
