@@ -13,7 +13,7 @@ describe('vhs', function() {
           ]
         },
         internals.decode([
-          "1532 1603"
+          '1532 1603'
         ])
       );
     });
@@ -26,7 +26,7 @@ describe('vhs', function() {
           ]
         },
         internals.decode([
-          "0600 0750 A show with a name"
+          '0600 0750 A show with a name'
         ])
       );
     });
@@ -42,10 +42,10 @@ describe('vhs', function() {
           ]
         },
         internals.decode([
-          "1530 1600",
-          "1555 1645",
-          "1600 1630",
-          "1635 1715"
+          '1530 1600',
+          '1555 1645',
+          '1600 1630',
+          '1635 1715'
         ])
       );
     });
@@ -61,17 +61,17 @@ describe('vhs', function() {
           ]
         },
         internals.decode([
-          "1530 1600 Super show",
-          "1555 1645",
-          "1600 1630 Danger",
-          "1635 1715 Mouse"
+          '1530 1600 Super show',
+          '1555 1645',
+          '1600 1630 Danger',
+          '1635 1715 Mouse'
         ])
       );
     });
     it('4 rows, some names, favorite', function() {
       assert.deepEqual(
         {
-          favorites: ["Danger"],
+          favorites: ['Danger'],
           programs: [
             {start: 1530, end: 1600, name: 'Super show'},
             {start: 1555, end: 1645, name: ''},
@@ -80,18 +80,19 @@ describe('vhs', function() {
           ]
         },
         internals.decode([
-          "Danger",
-          "1530 1600 Super show",
-          "1555 1645",
-          "1600 1630 Danger",
-          "1635 1715 Mouse"
+          'Danger',
+          '1530 1600 Super show',
+          '1555 1645',
+          '1600 1630 Danger',
+          '1635 1715 Mouse'
         ])
       );
     });
   });
   describe('intersect', function() {
     it('selfintersection', function() {
-      assert.equal(true,
+      assert.equal(
+        true,
         internals.intersect(
           {start: 1, end: 2, name: ''},
           {start: 1, end: 2, name: ''}
@@ -99,7 +100,8 @@ describe('vhs', function() {
       );
     });
     it('[ ] ( ) do not intersect', function() {
-      assert.equal(false,
+      assert.equal(
+        false,
         internals.intersect(
           {start: 1, end: 2, name: ''},
           {start: 3, end: 4, name: ''}
@@ -107,7 +109,8 @@ describe('vhs', function() {
       );
     });
     it('[ ( ] ) intersect', function() {
-      assert.equal(true,
+      assert.equal(
+        true,
         internals.intersect(
           {start: 1, end: 3, name: ''},
           {start: 2, end: 4, name: ''}
@@ -115,7 +118,8 @@ describe('vhs', function() {
       );
     });
     it('[ ( ) ] intersect', function() {
-      assert.equal(true,
+      assert.equal(
+        true,
         internals.intersect(
           {start: 1, end: 4, name: ''},
           {start: 2, end: 3, name: ''}
@@ -123,7 +127,8 @@ describe('vhs', function() {
       );
     });
     it('( [ ] ) intersect', function() {
-      assert.equal(true,
+      assert.equal(
+        true,
         internals.intersect(
           {start: 2, end: 3, name: ''},
           {start: 1, end: 4, name: ''}
@@ -131,7 +136,8 @@ describe('vhs', function() {
       );
     });
     it('( [ ) ] intersect', function() {
-      assert.equal(true,
+      assert.equal(
+        true,
         internals.intersect(
           {start: 2, end: 4, name: ''},
           {start: 1, end: 3, name: ''}
@@ -139,7 +145,8 @@ describe('vhs', function() {
       );
     });
     it('( ) [ ] do not intersect', function() {
-      assert.equal(false,
+      assert.equal(
+        false,
         internals.intersect(
           {start: 3, end: 4, name: ''},
           {start: 1, end: 2, name: ''}
@@ -148,13 +155,50 @@ describe('vhs', function() {
     });
   });
   describe('solve', function() {
-    it('4 shows, some overlap', function() {
-      assert.equal(3, vhs.solve([
-        "1530 1600",
-        "1555 1645",
-        "1600 1630",
-        "1635 1715"
-      ]).length);
+    it('sample, 4 shows', function() {
+      assert.equal(
+        3,
+        vhs.solve([
+          '1530 1600',
+          '1555 1645',
+          '1600 1630',
+          '1635 1715'
+        ]).length
+      );
+    });
+    it('bonus 1, 6 shows, names', function() {
+      assert.deepEqual(
+        [
+          'Pokémon',
+          'Law & Order',
+          'The Fresh Prince of Bel-Air'
+        ],
+        vhs.solve([
+          '1535 1610 Pokémon',
+          '1610 1705 Law & Order',
+          '1615 1635 ER',
+          '1615 1635 Ellen',
+          '1615 1705 Family Matters',
+          '1725 1810 The Fresh Prince of Bel-Air'
+        ])
+      );
+    });
+    it('bonus 2, 5 shows, names, favorite', function() {
+      assert.deepEqual(
+        [
+          'The Fresh Prince of Bel-Air',
+          'Ellen',
+          'Quantum Leap'
+        ],
+        vhs.solve([
+          'The Fresh Prince of Bel-Air',
+          '1530 1555 3rd Rock from the Sun',
+          '1550 1615 The Fresh Prince of Bel-Air',
+          '1555 1615 Mad About You',
+          '1615 1650 Ellen',
+          '1655 1735 Quantum Leap'
+        ])
+      );
     });
   });
 });

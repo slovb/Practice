@@ -1,9 +1,10 @@
+// Decode a timetable into favorites and programs
 var decode = function(timetable) {
   var favorites = [];
   var programs = [];
   var length = timetable.length;
   for (var i = 0; i < length; ++i) {
-    if (timetable[i].match(/^\d\d\d\d \d\d\d\d/) !== null) {
+    if (timetable[i].match(/^\d\d\d\d \d\d\d\d/) !== null) { // A row starting with 4 numbers space 4 numbers is a program
       var row = timetable[i].split(' ');
       programs.push({
         start: parseInt(row[0], 10),
@@ -11,7 +12,7 @@ var decode = function(timetable) {
         name: row.slice(2).join(' ')
       });
     }
-    else {
+    else { // It not a program, it is a favorite
       favorites.push(timetable[i]); 
     }
   }
@@ -21,6 +22,7 @@ var decode = function(timetable) {
   };
 };
 
+// True iff the two given programs intersect
 var intersect = function(x, y) {
   if (x.end <= y.start || y.end <= x.start) {
     return false; 
@@ -28,6 +30,7 @@ var intersect = function(x, y) {
   return true;
 };
 
+// Return a maximal path given the timetable
 var solve = function(timetable) {
   var decoded = decode(timetable);
 
@@ -74,7 +77,10 @@ var solve = function(timetable) {
     return path;
   };
 
-  return search(favoritesPath());
+  // Solve and extract names
+  return search(favoritesPath()).map(function(value) {
+    return value.name;
+  });
 };
 
 // Export solver
