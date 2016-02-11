@@ -10,16 +10,30 @@ var decode = function(timetable) {
     });
   }
   return output;
-}
+};
 
-var vhs = function(timetable) {
+var intersect = function(x, y) {
+  if (x.end <= y.start || y.end <= x.start) {
+    return false; 
+  }
+  return true;
+};
+
+var solve = function(timetable) {
   var decoded = decode(timetable);
   return [
-    undefined,
-    undefined,
-    undefined
+    '',
+    '',
+    ''
   ];
 };
 
-exports.vhs = vhs;
+// Export solver
+exports.solve = solve;
+
+// Export internals for testing
+exports.internals = {
+  decode: decode,
+  intersect: intersect
+};
 
