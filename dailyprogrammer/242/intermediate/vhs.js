@@ -47,12 +47,22 @@ var solve = function(timetable) {
   };
 
   // Search to find optimal subpath
-  var search = function(path) {
+  var search = function(path, choices) {
     path = path || [];
-    var choices = decoded.programs.filter(filterGenerator(path));
+    var filter = filterGenerator(path);
+    if (choices === undefined) {
+      choices = decoded.programs.filter(filter);
+    }
+    else { // Refine the choices
+      choices = choices.filter(filter);
+    }
+
     var best = path;
     for (var i = 0; i < choices.length; ++i) { // Try every viable choice
-      var candidate = search(path.concat(choices[i])); 
+      var candidate = search(
+        path.concat(choices[i]),
+        choices.slice(i + 1) // Reduce choices to skip multiple evaluations
+      ); 
       if (candidate.length > best.length) {
         best = candidate;
       }
@@ -60,21 +70,11 @@ var solve = function(timetable) {
     return best;
   }
 
-  // Build initial path from favorites, assuming a program only appears airs once
+  // Build initial path from favorites, assuming a program only airs once and no intersections among the favorites
   var favoritesPath = function() {
-    var path = [];
-    for (var i = 0; i < decoded.favorites.length; ++i) { // Add every favorite
-      var choices = decoded.programs.filter(filterGenerator(path));
-      for (var j = 0; j < choices.length; ++j) {
-        if (decoded.favorites[i] === choices[j].name) {
-          path.push(choices[j]);
-        }
-      }
-    }
-    if (path.length !== decoded.favorites.length) {
-      throw Exception('Unable to record favorites');
-    }
-    return path;
+    return decoded.programs.filter(function(program) {
+      return decoded.favorites.indexOf(program.name) > -1;
+    });
   };
 
   // Solve and extract names
