@@ -2,3 +2,4 @@
 const funnyPlant = require('./funnyPlant.js').funnyPlant;
 
 funnyPlant(15, 1);
+

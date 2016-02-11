@@ -27,3 +27,4 @@ describe('funnyPlant', function() {
     assert.equal(9, funnyPlant(150000, 250));
   });
 });
+
