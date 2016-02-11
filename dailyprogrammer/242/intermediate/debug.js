@@ -42,13 +42,24 @@ const bonus1 = [
   "1725 1810 The Fresh Prince of Bel-Air"
 ];
 
+const bonus2 = [
+  "The Fresh Prince of Bel-Air",
+  "1530 1555 3rd Rock from the Sun",
+  "1550 1615 The Fresh Prince of Bel-Air",
+  "1555 1615 Mad About You",
+  "1615 1650 Ellen",
+  "1655 1735 Quantum Leap"
+];
+
 const solvedSample = vhs.solve(sample);
 const solvedSet1 = vhs.solve(set1);
 const solvedSet2 = vhs.solve(set2);
 const solvedBonus1 = vhs.solve(bonus1);
+const solvedBonus2 = vhs.solve(bonus2);
 
 console.log(solvedSample);
 console.log(solvedSet1);
 console.log(solvedSet2);
 console.log(solvedBonus1);
+console.log(solvedBonus2);
 

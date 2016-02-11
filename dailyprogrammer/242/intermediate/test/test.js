@@ -5,30 +5,42 @@ const internals = vhs.internals;
 describe('vhs', function() {
   describe('decode', function() {
     it('1 row, no name', function() {
-      assert.deepEqual([
-          {start: 1532, end: 1603, name: ''}
-        ],
+      assert.deepEqual(
+        {
+          favorites: [],
+          programs: [
+            {start: 1532, end: 1603, name: ''}
+          ]
+        },
         internals.decode([
           "1532 1603"
         ])
       );
     });
     it('1 row, named', function() {
-      assert.deepEqual([
-          {start: 600, end: 750, name: 'A show with a name'}
-        ],
+      assert.deepEqual(
+        {
+          favorites: [],
+          programs: [
+            {start: 600, end: 750, name: 'A show with a name'}
+          ]
+        },
         internals.decode([
           "0600 0750 A show with a name"
         ])
       );
     });
     it('4 rows, no names', function() {
-      assert.deepEqual([
-          {start: 1530, end: 1600, name: ''},
-          {start: 1555, end: 1645, name: ''},
-          {start: 1600, end: 1630, name: ''},
-          {start: 1635, end: 1715, name: ''}
-        ],
+      assert.deepEqual(
+        {
+          favorites: [],
+          programs: [
+            {start: 1530, end: 1600, name: ''},
+            {start: 1555, end: 1645, name: ''},
+            {start: 1600, end: 1630, name: ''},
+            {start: 1635, end: 1715, name: ''}
+          ]
+        },
         internals.decode([
           "1530 1600",
           "1555 1645",
@@ -38,13 +50,37 @@ describe('vhs', function() {
       );
     });
     it('4 rows, some names', function() {
-      assert.deepEqual([
-          {start: 1530, end: 1600, name: 'Super show'},
-          {start: 1555, end: 1645, name: ''},
-          {start: 1600, end: 1630, name: 'Danger'},
-          {start: 1635, end: 1715, name: 'Mouse'}
-        ],
+      assert.deepEqual(
+        {
+          favorites: [],
+          programs: [
+            {start: 1530, end: 1600, name: 'Super show'},
+            {start: 1555, end: 1645, name: ''},
+            {start: 1600, end: 1630, name: 'Danger'},
+            {start: 1635, end: 1715, name: 'Mouse'}
+          ]
+        },
         internals.decode([
+          "1530 1600 Super show",
+          "1555 1645",
+          "1600 1630 Danger",
+          "1635 1715 Mouse"
+        ])
+      );
+    });
+    it('4 rows, some names, favorite', function() {
+      assert.deepEqual(
+        {
+          favorites: ["Danger"],
+          programs: [
+            {start: 1530, end: 1600, name: 'Super show'},
+            {start: 1555, end: 1645, name: ''},
+            {start: 1600, end: 1630, name: 'Danger'},
+            {start: 1635, end: 1715, name: 'Mouse'}
+          ]
+        },
+        internals.decode([
+          "Danger",
           "1530 1600 Super show",
           "1555 1645",
           "1600 1630 Danger",
@@ -54,6 +90,14 @@ describe('vhs', function() {
     });
   });
   describe('intersect', function() {
+    it('selfintersection', function() {
+      assert.equal(true,
+        internals.intersect(
+          {start: 1, end: 2, name: ''},
+          {start: 1, end: 2, name: ''}
+        )
+      );
+    });
     it('[ ] ( ) do not intersect', function() {
       assert.equal(false,
         internals.intersect(
