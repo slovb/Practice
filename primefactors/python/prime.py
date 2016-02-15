@@ -1,5 +1,7 @@
 def factors(n):
-    return []
+    if (n < 2):
+        return []
+    return [n]
 
 if __name__ == '__main__':
     import sys
