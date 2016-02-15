@@ -1,9 +1,9 @@
 def factorize(n):
     factors = []
+    while (n % 2 == 0):
+        factors += [2]
+        n /= 2
     if (n > 1):
-        if (n % 2 == 0):
-            factors += [2]
-            n /= 2
         factors += [n]
     return factors
 
