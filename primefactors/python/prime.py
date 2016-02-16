@@ -16,5 +16,5 @@ def factorize(n):
 
 if __name__ == '__main__':
     import sys
-    factors(int(sys.argv[1]))
+    print factorize(int(sys.argv[1]))
 
