@@ -1,7 +1,6 @@
 import unittest
-from quick import sort
 
-class TestQuick(unittest.TestCase):
+class TestSort(unittest.TestCase):
     def test_empty(self):
         self.assertEqual(sort([]), [])
 
@@ -38,5 +37,6 @@ class TestQuick(unittest.TestCase):
         )
 
 if __name__ == '__main__':
+    from topdown import sort
     unittest.main()
 
