@@ -10,5 +10,5 @@ def isPalindrome(candidate):
 
 if __name__ == '__main__':
     import sys
-    print isPalindrome(sys.argv[1:])
+    print isPalindrome(''.join(sys.argv[1:]))
 
