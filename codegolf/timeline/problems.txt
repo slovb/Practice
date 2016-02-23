@@ -1,0 +1,31 @@
+http://codegolf.stackexchange.com/questions/73477/draw-a-timeline
+
+Given a list of integers print a timeline.
+
+* The first line of output is a less than sign (<), a number of dashes equal to dateOfLastEvent - dateOfFirstEvent + 3 (because one must be added to include the last date, and then two more for padding), and then a greater than sign (>).
+
+* In the second line of output, each event is placed at position dateOfEvent -
+dateOfFirstEvent + 2 (assuming zero-indexing). Hence, the first event is placed at position 2, two characters to the right of the <, and the last event is similarly two characters to the left of the >.
+
+* Each event is represented by a letter. Event 1 is A, event 2 is B, etc. There will never be more than 26 events. You may use lowercase letters if you would like.
+
+* There is no trailing whitespace. The only extra whitespace allowed is a trailing newline at the end of the program.
+
+Examples:
+
+32767 32715 32716 32750 32730 32729 32722 32766 32740 32762
+<------------------------------------------------------->
+  BC     G      FE         I         D           J   HA
+2015 2014
+<---->
+  BA
+1990 1996 1999 2011 2016
+<----------------------------->
+  A     B  C           D    E
+2 3 1 5 4
+<------->
+  CABED
+12345
+<--->
+  A
+
