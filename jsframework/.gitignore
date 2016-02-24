@@ -1,0 +1,7 @@
+/*/build
+/*/node_modules
+makefile
+*.swp
+*.ignore.*
+.sass-cache
+/*/bower_components

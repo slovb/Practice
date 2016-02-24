@@ -1,0 +1,6 @@
+{
+  "name": "underscore",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
