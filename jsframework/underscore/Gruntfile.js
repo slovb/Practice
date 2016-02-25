@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         'head-script-disabled': true,
         'style-disabled': true
       },
-      src: ['source/html/**/*.html']
+      src: ['source/**/*.html']
     },
     jshint: {
       options: {
@@ -42,22 +42,22 @@ module.exports = function(grunt) {
           module: true
         }
       },
-      files: ['gruntfile.js', 'source/js/**/*.js']
+      files: ['gruntfile.js', 'source/**/*.js']
     },
     scsslint: {
-      allFiles: ['source/sass/*.scss'],
+      allFiles: ['source/*.scss'],
       options: {}
     },
     copy: {
       html: {
         expand: true,
-        cwd: 'source/html/',
+        cwd: 'source/',
         src: '**/*.html',
         dest: 'build/'
       },
       js: {
         expand: true,
-        cwd: 'source/js/',
+        cwd: 'source/',
         src: '**/*.js',
         dest: 'build/'
       },
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: 'source/sass',
+          cwd: 'source',
           src: ['**/*.scss'],
           dest: 'build',
           ext: '.css'
@@ -89,21 +89,21 @@ module.exports = function(grunt) {
     },
     watch: {
       markup: {
-        files: ['source/html/**/*.html'],
+        files: ['source/**/*.html'],
         tasks: ['markup'],
         options: {
           livereload: true
         }
       },
       style: {
-        files: ['source/sass/**/*.scss'],
+        files: ['source/**/*.scss'],
         tasks: ['style'],
         options: {
           livereload: true
         }
       },
       script: {
-        files: ['source/js/**/*.js'],
+        files: ['source/**/*.js'],
         tasks: ['script'],
         options: {
           livereload: true
