@@ -1,5 +1,7 @@
 $background: #eee;
-$text: #111;
+$text: #000;
+$pink: #ff69b4;
+$blue: #0077be;
 
 * {
   margin: 0;
@@ -14,5 +16,20 @@ body {
   background-color: $background;
   color: $text;
   height: 100%;
+}
+
+div {
+  margin: 4px;
+  padding: 8px;
+}
+
+.string {
+  background-color: $pink;
+  display: inline-block;
+}
+
+.array {
+  background-color: $blue;
+  display: inline-block;
 }
 
