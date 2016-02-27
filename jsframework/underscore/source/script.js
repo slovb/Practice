@@ -1,40 +1,41 @@
-(function() {
-  var container = document.getElementById('container');
-
-  var paint = function(element) {
-    var paintInto = function(element, target) {
-      var child = document.createElement('div');
-      if (typeof element === 'string') {
-        child.className = 'string';
-        child.appendChild(document.createTextNode(element));
-      }
-      else if (typeof element === 'object') {
-        if (Array.isArray(element)) {
-          child.className = 'array';
-          var painter = function(element) { // TODO: Resolve this silliness with better designed recursion
-            paintInto(element, child);  
-          };
-          _.each(element, painter);
-        }
-      }
-      target.appendChild(child);
-    };
-    paintInto(element, container);
+(function(undefined) {
+  var example = function() {
+    return document.getElementById('container').addDiv('example');
   };
 
-  var paintTitle = (function() {
-    var i = 0;
-    return function(title) {
-      i += 1;
-      var child = document.createElement('h1');
-      child.appendChild(document.createTextNode(i + ': ' + title));
-      container.appendChild(child);
-    };
+  var nop = function(val) {
+    return val; 
+  };
+
+  example()
+    .header('?')
+    .left('Hej')
+    .right('Hej');
+
+  example()
+    .header('!?')
+    .left(true)
+    .right(!true);
+
+  example()
+    .header('? + 5')
+    .left(Math.sqrt(2))
+    .right(Math.sqrt(2) + 5);
+
+  (function() {
+    var param = ['Hey', 'how', 'are', 'you', '?'];
+    example()
+      .header('_.map(?, nop)')
+      .left(param)
+      .right(_.map(param, nop));
   })();
 
-  paintTitle('Foo');
-  paint(['Hey', 'how', 'are', 'you', '?']);
-  paintTitle('Bar');
-  _.each(['Hey', 'how', 'are', 'you', '?'], paint);
+  (function() {
+    var param = [true, false, 1, 2];
+    example()
+      .header('_.map(?, nop)')
+      .left(param)
+      .right(_.map(param, nop));
+  })();
 })();
 

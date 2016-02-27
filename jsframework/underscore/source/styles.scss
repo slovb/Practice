@@ -2,6 +2,8 @@ $background: #eee;
 $text: #000;
 $pink: #ff69b4;
 $blue: #0077be;
+$green: #1bbc9b;
+$orange: #e87e04;
 
 * {
   margin: 0;
@@ -19,17 +21,39 @@ body {
 }
 
 div {
+  display: inline-block;
   margin: 4px;
+  overflow: hidden;
   padding: 8px;
-}
 
-.string {
-  background-color: $pink;
-  display: inline-block;
-}
+  &.container,
+  &.header,
+  &.example {
+    display: block;
+  }
 
-.array {
-  background-color: $blue;
-  display: inline-block;
+  &.left {
+    float: left;
+  }
+
+  &.right {
+    float: right;
+  }
+
+  &.string {
+    background-color: $pink;
+  }
+
+  &.array {
+    background-color: $blue;
+  }
+
+  &.number {
+    background-color: $green;
+  }
+
+  &.boolean {
+    background-color: $orange;
+  }
 }
 
